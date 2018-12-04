@@ -2,3 +2,6 @@
 .idea
 asr-api/
 workshop/
+config.py
+.cache/
+__pycache__/
