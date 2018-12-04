@@ -3,6 +3,7 @@ import logging
 from time import time
 
 from config import *
+from maps_handler import fill_form_with_data
 
 logging.basicConfig(level=logging.INFO)
 import speech_recognition as sr
@@ -69,3 +70,7 @@ def record():
 if __name__ == '__main__':
     filepath = record()
     command = send_to_asr_api(filename=filepath)
+    # command = send_to_asr_api(filename=".cache/1543953207.wav")
+    start, destination = command.split("do")
+
+    fill_form_with_data(start, destination)

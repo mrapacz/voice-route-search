@@ -5,3 +5,4 @@ workshop/
 config.py
 .cache/
 __pycache__/
+geckodriver.log
