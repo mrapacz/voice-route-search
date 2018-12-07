@@ -3,7 +3,7 @@ import logging
 from time import time
 
 from config import *
-from maps_handler import search_jakdojade
+from jakdojade import search_jakdojade
 
 logging.basicConfig(level=logging.INFO)
 import speech_recognition as sr
