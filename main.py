@@ -4,6 +4,7 @@ from time import time
 
 from config import *
 from jakdojade import search_jakdojade
+from semantics import analyze_command
 
 logging.basicConfig(level=logging.INFO)
 import speech_recognition as sr
@@ -73,9 +74,8 @@ if __name__ == '__main__':
     # command = send_to_asr_api(filename=".cache/1543953207.wav")
     # command = send_to_asr_api(filename=".cache/1543954701.wav")
     command = "Miasteczka studenckiego do ronda ofiar katynia"
-    delimiters = "do", "w kierunku", "kierunku"
-    for delimiter in delimiters:
-        if delimiter in command:
-            start, destination = command.split(delimiter)
-            search_jakdojade(start, destination)
-            break
+
+    start, end = analyze_command(command)
+
+    # end = None
+    search_jakdojade(start, end)
