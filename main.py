@@ -78,4 +78,4 @@ if __name__ == '__main__':
     start, end = analyze_command(command)
 
     # end = None
-    search_jakdojade(start, end)
+    search_jakdojade(start, end, headless=False)

@@ -60,7 +60,7 @@ def get_results(driver: webdriver.Firefox):
     result = By.XPATH, "/html/body/div[3]/main/div/ui-view/div/article/div[4]/div/div[2]/div/div[1]/div[1]/div/div[2]/div[1]/div/span[1]"
 
     wait_until_visibility_located(driver, result)
-    print(driver.find_element(*result).text)
+    return driver.find_element(*result).text
 
 
 def search_jakdojade(start=None, destination=None, headless=True):
@@ -77,4 +77,4 @@ def search_jakdojade(start=None, destination=None, headless=True):
     accept_cookies(driver)
     fill_form_with_data(driver, start, destination)
     submit_form(driver)
-    get_results(driver)
+    return get_results(driver)
