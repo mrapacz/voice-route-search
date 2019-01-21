@@ -1,5 +1,6 @@
 import os
 import logging
+import subprocess
 from time import time
 
 from config import *
@@ -23,16 +24,16 @@ def log_event(msg, lang="en", verbose=VOICE):
 
 def send_to_asr_api(filename=FILENAME):
     log_event("Sending the command to ASR API")
-    result = os.popen(
-        "{binary} -P {port} -p '{bearer}' -addr {addr} -w {filename} -verbose".format(
-            binary=BINARY,
-            port=PORT,
-            bearer=BEARER,
-            addr=ADDR,
-            filename=filename,
-        )).read()
+    command = "{binary} -P {port} -p '{bearer}' -addr {addr} -w {filename} -verbose".format(
+        binary=BINARY,
+        port=PORT,
+        bearer=BEARER,
+        addr=ADDR,
+        filename=filename,
+    )
 
-    command = result.strip().split("\n")[-2]
+    output = subprocess.check_output(command, shell=True)
+    command = output.decode().strip().split("\n")[-2]
 
     log_event(command, lang="pl")
     return command
@@ -71,9 +72,9 @@ def record():
 if __name__ == '__main__':
     # filepath = record()
     # command = send_to_asr_api(filename=filepath)
-    # command = send_to_asr_api(filename=".cache/1543953207.wav")
+    command = send_to_asr_api(filename=".cache/1548089603.wav")
     # command = send_to_asr_api(filename=".cache/1543954701.wav")
-    command = "Miasteczka studenckiego do ronda ofiar katynia"
+    # command = "Miasteczka studenckiego do ronda ofiar katynia"
 
     start, end = analyze_command(command)
 

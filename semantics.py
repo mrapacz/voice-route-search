@@ -1,8 +1,28 @@
 import re
 
+from numbers_pl import NUMBERS
+
 
 def analyze_command(command):
-    delimiters = "do", "w kierunku", "kierunku"
+    words = command.split()
+
+    final_command = []
+    total_value = 0
+    for word in words:
+        if total_value != 0 and word not in NUMBERS:
+            final_command.append(str(total_value))
+            total_value = 0
+
+        if word in NUMBERS:
+            total_value += NUMBERS[word]
+        else:
+            final_command.append(word)
+
+    if total_value != 0:
+        final_command.append(str(total_value))
+
+    command = " ".join(final_command)
+    delimiters = " do ", " w kierunku ", " kierunku "
 
     for delimiter in delimiters:
         if delimiter in command:
