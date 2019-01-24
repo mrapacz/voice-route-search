@@ -70,11 +70,9 @@ def record():
 
 
 if __name__ == '__main__':
-    # filepath = record()
-    # command = send_to_asr_api(filename=filepath)
-    command = send_to_asr_api(filename=".cache/1548089603.wav")
-    # command = send_to_asr_api(filename=".cache/1543954701.wav")
-    # command = "Miasteczka studenckiego do ronda ofiar katynia"
+    filepath = record()
+    command = send_to_asr_api(filename=filepath)
+    # command = send_to_asr_api(filename=".cache/1548089603.wav")
 
     start, end = analyze_command(command)
 
