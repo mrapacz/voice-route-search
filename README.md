@@ -1,4 +1,5 @@
 # Voice route searching
+![example gif](examples/example.gif)
 
 This is a proof of concept of an app that joins VoiceLab's Polish speech recognition API with jakdojade (a trip planning app).
 
