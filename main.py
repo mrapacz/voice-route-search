@@ -14,12 +14,9 @@ RECORDINGS = ".cache"
 FILENAME = "recording.wav"
 
 
-def log_event(msg, lang="en", verbose=VOICE):
-    print(msg)
+def log_event(msg):
     # logging.info(msg)
-
-    # if verbose:
-    #     say(msg, lang)
+    print(msg)
 
 
 def send_to_asr_api(filename=FILENAME):
@@ -35,16 +32,8 @@ def send_to_asr_api(filename=FILENAME):
     output = subprocess.check_output(command, shell=True)
     command = output.decode().strip().split("\n")[-2]
 
-    log_event(command, lang="pl")
+    log_event(command)
     return command
-
-
-def say(text, lang, prefix=None):
-    if prefix:
-        say(text=prefix, lang=lang)
-
-    voice = "Zosia" if lang == "pl" else "Victoria"
-    os.system('say -v {} "{}"'.format(voice, text))
 
 
 def get_new_filepath():
@@ -61,7 +50,7 @@ def record():
         audio = r.listen(source)
 
     filepath = get_new_filepath()
-    log_event("Saving the recording to " + filepath, verbose=False)
+    log_event("Saving the recording to " + filepath)
 
     with open(filepath, "wb") as f:
         f.write(audio.get_wav_data(convert_rate=16000))
@@ -70,11 +59,10 @@ def record():
 
 
 if __name__ == '__main__':
-    filepath = record()
-    command = send_to_asr_api(filename=filepath)
-    # command = send_to_asr_api(filename=".cache/1548089603.wav")
+    # filepath = record()
+    # command = send_to_asr_api(filename=filepath)
+    command = send_to_asr_api(filename=".cache/1548089603.wav")
 
     start, end = analyze_command(command)
 
-    # end = None
     search_jakdojade(start, end, headless=False)

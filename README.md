@@ -1,7 +1,7 @@
 # Voice route searching
 ![example gif](examples/example.gif)
 
-This is a proof of concept of an app that joins VoiceLab's Polish speech recognition API with jakdojade (a trip planning app).
+This is a quick and dirty proof of concept of an app that joins VoiceLab's Polish speech recognition API with jakdojade (a trip planning app).
 
 ## Requirements
 1. Make sure Selenium binary is installed and accessible.

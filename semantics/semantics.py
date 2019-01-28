@@ -1,6 +1,6 @@
 import re
 
-from numbers_pl import NUMBERS
+from .numbers_pl import NUMBERS
 
 
 def analyze_command(command):
